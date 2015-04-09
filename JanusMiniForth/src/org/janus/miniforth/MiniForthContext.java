@@ -3,6 +3,7 @@ package org.janus.miniforth;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Stack;
 
@@ -10,7 +11,7 @@ import org.janus.data.DataDescription;
 import org.janus.database.DataContextWithConnection;
 
 public class MiniForthContext extends DataContextWithConnection {
-	private Stack<Object> objectStack = new Stack<>();
+	private Stack<Serializable> objectStack = new Stack<>();
 	private PrintWriter output;
 
 	public MiniForthContext(DataDescription description) {
@@ -22,11 +23,11 @@ public class MiniForthContext extends DataContextWithConnection {
 		objectStack.push(value);
 	}
 
-	public void push(Object value) {
+	public void push(Serializable value) {
 		objectStack.push(value);
 	}
 
-	public Object pop() {
+	public Serializable pop() {
 		return objectStack.pop();
 	}
 

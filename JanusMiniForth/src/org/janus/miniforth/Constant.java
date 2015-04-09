@@ -1,12 +1,14 @@
 package org.janus.miniforth;
 
+import java.io.Serializable;
+
 import org.janus.actions.Action;
 import org.janus.data.DataContext;
 
 public class Constant extends WordImpl implements Action {
-	private Object value;
+	private Serializable value;
 
-	public Constant(Object value) {
+	public Constant(Serializable value) {
 		super(1);
 		this.value = value;
 	}

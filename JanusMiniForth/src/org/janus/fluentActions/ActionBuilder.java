@@ -1,5 +1,6 @@
 package org.janus.fluentActions;
 
+import java.io.Serializable;
 import java.util.Stack;
 
 import org.janus.actions.Action;
@@ -148,7 +149,7 @@ public class ActionBuilder extends TermRelatImpl implements IActionList, ISql,
 		return this;
 	}
 
-	public static ITerm c(Object value) {
+	public static ITerm c(Serializable value) {
 		return new TermRelatImpl(new Constant(value));
 	}
 

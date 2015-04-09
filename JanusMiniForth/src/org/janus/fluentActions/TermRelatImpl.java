@@ -1,5 +1,7 @@
 package org.janus.fluentActions;
 
+import java.io.Serializable;
+
 import org.janus.actions.Action;
 import org.janus.actions.ActionList;
 import org.janus.actions.HandleValue;
@@ -135,7 +137,7 @@ public class TermRelatImpl extends WordList implements ITerm, IRelation {
 	}
 
 	@Override
-	public TermRelatImpl constant(Object value) {
+	public TermRelatImpl constant(Serializable value) {
 		addAction(new Constant(value));
 		return this;
 	}

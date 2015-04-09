@@ -1,12 +1,14 @@
 package org.janus.fluentActions;
 
+import java.io.Serializable;
+
 import org.janus.actions.Action;
 
 public interface ITerm extends Action {
 
 	ITerm fetch(String name);
 
-	ITerm constant(Object value);
+	ITerm constant(Serializable value);
 
 	ITerm plus(ITerm term);
 
