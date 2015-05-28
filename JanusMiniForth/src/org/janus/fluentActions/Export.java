@@ -29,6 +29,7 @@ public class Export extends DataValueList implements Action {
 				write(context, writer, '|');
 				writer.write("\n");
 			} catch (Exception e) {
+				e.printStackTrace();
 				throw new RuntimeException(e);
 			}
 		}

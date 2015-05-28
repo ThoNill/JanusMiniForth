@@ -41,7 +41,6 @@ public class ColumnSum implements Action {
 
 	public HandleValue getSumValue() {
 		HandleValue sum = new HandleValue(getSumName());
-		sum.setType(BigDecimalType.decimal);
 		return sum;
 	}
 

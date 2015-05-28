@@ -30,7 +30,7 @@ public class Fetch extends WordImpl implements Action {
 
 	@Override
 	public String toString() {
-		return "Fetch " + value.getName();
+		return "Fetch " + value.toString();
 	}
 
 }

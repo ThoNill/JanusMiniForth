@@ -12,7 +12,7 @@ import java.util.Date;
 import org.janus.actions.Action;
 import org.janus.actions.ActionList;
 import org.janus.actions.BigDecimalType;
-import org.janus.actions.GeneralDataType;
+import org.janus.actions.GeneralDataFormat;
 import org.janus.actions.HandleValue;
 import org.janus.data.DataContext;
 import org.janus.data.DataDescription;
@@ -70,22 +70,13 @@ public class FluentActions {
 		}
 	}
 
-	@Test
-	public void testHandleValue4() {
-		try {
-			HandleValue value = new HandleValue("geht");
-			assertTrue(value.getType() instanceof GeneralDataType);
-		} catch (Exception ex) {
-			fail("sollte gehen");
-		}
-	}
+
 
 	@Test
 	public void testHandleValue5() {
 		try {
 			DataDescription description = new DataDescriptionImpl();
-			HandleValue value = new HandleValue("gehtNicht");
-			value.setType(BigDecimalType.decimal);
+			HandleValue value = new HandleValue("gehtNicht",BigDecimalType.decimal);
 			value.configure(description);
 			DataContext dataContext = description.newContext();
 			value.perform(dataContext);
