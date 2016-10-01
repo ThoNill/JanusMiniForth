@@ -8,6 +8,7 @@ public class TestStartRunEnd extends StartRunEnd<IntHolder> {
 
 	@Override
 	protected void stop(IntHolder data) throws Exception {
+	    // Keine Aktion zum Test notwendig
 	}
 
 	@Override

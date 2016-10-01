@@ -1,6 +1,8 @@
 package org.janus.fluentActions;
 
 import java.io.Serializable;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 import org.janus.actions.Action;
@@ -23,12 +25,12 @@ public class ActionBuilder extends TermRelatImpl implements IActionList, ISql,
 	Place status;
 
 	ActionList currentActions = null;
-	Stack<ActionList> lists = null;
+	Deque<ActionList> lists = null;
 
 	public ActionBuilder() {
 		super();
 		currentActions = this;
-		lists = new Stack<>();
+		lists = new ArrayDeque<>();
 	}
 
 	@Override

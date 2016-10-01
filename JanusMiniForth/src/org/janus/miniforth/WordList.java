@@ -13,7 +13,7 @@ public class WordList extends ActionList implements Word {
 	public void check() {
 		int saldo = getStackSaldo();
 		if (saldo != 0) {
-			throw new RuntimeException("Stack Saldo != 0 " + saldo);
+			throw new IllegalArgumentException("Stack Saldo != 0 " + saldo);
 		}
 	}
 

@@ -25,7 +25,7 @@ public class Compare extends WordImpl {
 		if (a.getClass().equals(b.getClass())) {
 			result = compare(a, b);
 		} else {
-			throw new RuntimeException("Vergleich nicht möglich");
+			throw new IllegalArgumentException("Vergleich nicht möglich");
 		}
 		withStack.pushBoolean(result);
 	}

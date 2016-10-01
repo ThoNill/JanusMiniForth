@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
+import org.apache.log4j.Logger;
 import org.janus.actions.DataValue;
 import org.janus.actions.HandleValue;
 import org.janus.data.DataDescription;
@@ -13,6 +14,8 @@ import org.janus.miniforth.MiniForthContext;
 import org.junit.Test;
 
 public class StartRunStopTest {
+    private static final Logger LOG = Logger.getLogger(FluentActions.class);
+    private static final String UNERWARTETE_AUSNAHME = "unerwartete Ausnahme";
 
 	public StartRunStopTest() {
 		// TODO Auto-generated constructor stub
@@ -48,6 +51,7 @@ public class StartRunStopTest {
 			assertEquals(1, s.configured);
 
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 		}
 	}
 
@@ -75,6 +79,7 @@ public class StartRunStopTest {
 			assertEquals(new BigDecimal("3.00"), sum.getObject(dataContext));
 
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 		}
 	}
 

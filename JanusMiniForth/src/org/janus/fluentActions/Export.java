@@ -2,13 +2,16 @@ package org.janus.fluentActions;
 
 import java.io.Writer;
 
+import org.apache.log4j.Logger;
 import org.janus.actions.Action;
+import org.janus.actions.ActionPerformException;
 import org.janus.actions.DataValueList;
 import org.janus.data.DataContext;
 import org.janus.helper.DebugAssistent;
 import org.janus.miniforth.MiniForthContext;
 
 public class Export extends DataValueList implements Action {
+    private static final Logger LOG = Logger.getLogger(Export.class);
 	String name;
 
 	public Export(String name) {
@@ -29,8 +32,8 @@ public class Export extends DataValueList implements Action {
 				write(context, writer, '|');
 				writer.write("\n");
 			} catch (Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException(e);
+				LOG.error("Fehler",e);;
+				throw new ActionPerformException(e);
 			}
 		}
 

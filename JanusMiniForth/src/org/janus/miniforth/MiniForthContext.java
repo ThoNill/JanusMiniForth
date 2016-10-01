@@ -5,13 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 import org.janus.data.DataDescription;
 import org.janus.database.DataContextWithConnection;
 
 public class MiniForthContext extends DataContextWithConnection {
-	private Stack<Serializable> objectStack = new Stack<>();
+	private Deque<Serializable> objectStack = new ArrayDeque<>();
 	private PrintWriter output;
 
 	public MiniForthContext(DataDescription description) {
@@ -19,8 +21,8 @@ public class MiniForthContext extends DataContextWithConnection {
 	}
 
 	public void push(BigDecimal value) {
-		value = value.setScale(2, BigDecimal.ROUND_HALF_UP);
-		objectStack.push(value);
+	    BigDecimal roundedValue = value.setScale(2, BigDecimal.ROUND_HALF_UP);
+		objectStack.push(roundedValue);
 	}
 
 	public void push(Serializable value) {

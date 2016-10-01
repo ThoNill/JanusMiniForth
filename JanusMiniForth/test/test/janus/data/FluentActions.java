@@ -1,18 +1,17 @@
 package test.janus.data;
 
 import static org.janus.fluentActions.ActionBuilder.v;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.Date;
-
+import org.apache.log4j.Logger;
 import org.janus.actions.Action;
 import org.janus.actions.ActionList;
 import org.janus.actions.BigDecimalType;
-import org.janus.actions.GeneralDataFormat;
 import org.janus.actions.HandleValue;
 import org.janus.data.DataContext;
 import org.janus.data.DataDescription;
@@ -29,7 +28,11 @@ import org.janus.miniforth.Or;
 import org.janus.miniforth.StackPredicate;
 import org.junit.Test;
 
+
 public class FluentActions {
+    private static final Logger LOG = Logger.getLogger(FluentActions.class);
+    private static final String AUSNAHME_AUFGETRETEN = "erwartete Ausnahme aufgetreten";
+    private static final String UNERWARTETE_AUSNAHME = "unerwartete Ausnahme";
 
 	@Test
 	public void testHandleValue1() {
@@ -40,6 +43,7 @@ public class FluentActions {
 			value.setObject(dataContext, value);
 			fail("sollte nicht gehen");
 		} catch (Exception ex) {
+		    LOG.error(AUSNAHME_AUFGETRETEN,ex);
 		}
 	}
 
@@ -56,6 +60,7 @@ public class FluentActions {
 			assertEquals("aber", value.getObject(dataContext));
 
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 			fail("sollte gehen");
 		}
 	}
@@ -66,6 +71,7 @@ public class FluentActions {
 			HandleValue value = new HandleValue("geht");
 			assertEquals("geht", value.getName());
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 			fail("sollte gehen");
 		}
 	}
@@ -83,6 +89,7 @@ public class FluentActions {
 			assertEquals(BigDecimal.ZERO, value.getObject(dataContext));
 
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 		}
 	}
 
@@ -98,6 +105,7 @@ public class FluentActions {
 			assertEquals("Test", value2.getObject(dataContext));
 
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 		}
 	}
 
@@ -122,6 +130,7 @@ public class FluentActions {
 			assertTrue(a1.performed > 0);
 			assertTrue(a1.performed > 0);
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 			fail("sollte gehen");
 		}
 	}
@@ -146,6 +155,7 @@ public class FluentActions {
 			assertTrue(a1.performed > 0);
 			assertTrue(a2.performed > 0);
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 			fail("sollte gehen");
 		}
 	}
@@ -172,6 +182,7 @@ public class FluentActions {
 			assertTrue(a1.performed == 0);
 			assertTrue(a2.performed > 0);
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 			fail("sollte gehen");
 		}
 	}
@@ -199,6 +210,7 @@ public class FluentActions {
 			assertTrue(a1.performed == 2);
 			assertTrue(a2.performed == 1);
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 			fail("sollte gehen");
 		}
 	}
@@ -225,6 +237,7 @@ public class FluentActions {
 			assertEquals(new BigDecimal("-12.12"), dataContext.popBigDecimal());
 
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 			fail("sollte gehen");
 		}
 	}
@@ -259,6 +272,7 @@ public class FluentActions {
 			doCompareTest(dataContext, "4.12", "2.12", Comp.GEQ, true);
 
 		} catch (Exception ex) {
+		    LOG.error(UNERWARTETE_AUSNAHME,ex);
 			fail("sollte gehen");
 		}
 	}
@@ -293,6 +307,7 @@ public class FluentActions {
 			pred.hasPredicate(dataContext);
 			fail("keine Exception");
 		} catch (Exception ex) {
+		    LOG.error(AUSNAHME_AUFGETRETEN,ex);
 		}
 	}
 
@@ -315,6 +330,7 @@ public class FluentActions {
 			pred.hasPredicate(dataContext);
 			fail("keine Exception");
 		} catch (Exception ex) {
+		    LOG.error(AUSNAHME_AUFGETRETEN,ex);
 		}
 	}
 
@@ -410,7 +426,8 @@ public class FluentActions {
 		try {
 			withStack.closeOutput();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		    LOG.error(UNERWARTETE_AUSNAHME,e);
+			LOG.error("Fehler",e);;
 		}
 	}
 
@@ -451,9 +468,9 @@ public class FluentActions {
 		builder.configure(description);
 		MiniForthContext withStack = new MiniForthContext(description);
 
-		withStack.setObject(a, new BigDecimal(va));
-		withStack.setObject(b, new BigDecimal(vb));
-		withStack.setObject(c, new BigDecimal(vc));
+		withStack.setObject(a, BigDecimal.valueOf(va));
+		withStack.setObject(b, BigDecimal.valueOf(vb));
+		withStack.setObject(c, BigDecimal.valueOf(vc));
 
 		builder.perform(withStack);
 
