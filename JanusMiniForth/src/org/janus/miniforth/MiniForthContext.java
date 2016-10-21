@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
 
 import org.janus.data.DataDescription;
 import org.janus.database.DataContextWithConnection;

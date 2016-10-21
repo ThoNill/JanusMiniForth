@@ -3,7 +3,6 @@ package org.janus.fluentActions;
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
 
 import org.janus.actions.Action;
 import org.janus.actions.ActionList;

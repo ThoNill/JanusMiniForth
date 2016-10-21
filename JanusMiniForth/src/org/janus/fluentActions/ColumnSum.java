@@ -3,7 +3,6 @@ package org.janus.fluentActions;
 import java.math.BigDecimal;
 
 import org.janus.actions.Action;
-import org.janus.actions.BigDecimalType;
 import org.janus.actions.HandleValue;
 import org.janus.data.DataContext;
 import org.janus.data.DataDescription;

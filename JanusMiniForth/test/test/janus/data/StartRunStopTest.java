@@ -18,7 +18,7 @@ public class StartRunStopTest {
     private static final String UNERWARTETE_AUSNAHME = "unerwartete Ausnahme";
 
 	public StartRunStopTest() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Test
